@@ -11,8 +11,7 @@ docker-compose exec app php artisan migrate:fresh --seed
 http://localhost/api/galleries
 http://localhost/api/pages
 
-# Screenshot 
-Gallery API
+# Screenshot of Gallery API 
 ![Screenshot](https://github.com/Shristi1919/laravel11_cms/blob/master/public/img/app_screenshot/galleriesapi.PNG) 
 
 Page API
