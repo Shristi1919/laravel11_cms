@@ -13,6 +13,6 @@ http://localhost/api/pages
 
 # Screenshot 
 Gallery API
-![Screenshot](./public/image/app_screenshot/galleriesapi.PNG) 
+![Screenshot](https://github.com/Shristi1919/laravel11_cms/blob/master/public/img/app_screenshot/galleriesapi.PNG) 
 
 Page API
