@@ -1,1 +1,18 @@
-# laravel11_cms
+# Build and start the containers:
+docker-compose up -d --build
+
+# Install PHP dependencies:
+docker-compose exec app composer install
+
+# Run database migrations and seeders:
+docker-compose exec app php artisan migrate:fresh --seed
+
+# API Path
+http://localhost/api/galleries
+http://localhost/api/pages
+
+# Screenshot 
+Gallery API
+![Screenshot](./public/image/app_screenshot/galleriesapi.PNG) 
+
+Page API
