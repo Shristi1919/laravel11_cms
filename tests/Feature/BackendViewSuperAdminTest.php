@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Category\Models\Category;
+use Modules\Gallery\Models\Gallery;
 use Modules\Post\Models\Post;
 use Modules\Tag\Models\Tag;
 use Tests\TestCase;
@@ -491,6 +492,117 @@ class BackendViewSuperAdminTest extends TestCase
 
         $this->assertSoftDeleted($model);
     }
+
+    /**
+     * Gallery Test.
+     *
+     * ---------------------------------------------------------------
+     */
+
+     public function test_super_admin_user_can_view_galleries_index(): void
+     {
+         Artisan::call('laravel-starter:insert-demo-data');
+
+         $response = $this->get('/admin/galleries');
+
+         $response->assertStatus(200);
+     }
+
+     public function test_super_admin_user_can_create_gallery(): void
+     {
+         Artisan::call('laravel-starter:insert-demo-data');
+
+         $response = $this->get('/admin/galleries/create');
+
+         $response->assertStatus(200);
+     }
+
+     public function test_super_admin_user_can_show_gallery(): void
+     {
+         Artisan::call('laravel-starter:insert-demo-data');
+
+         $response = $this->get('/admin/galleries/1');
+
+         $response->assertStatus(200);
+     }
+
+     public function test_super_admin_user_can_edit_gallery(): void
+     {
+         Artisan::call('laravel-starter:insert-demo-data');
+
+         $response = $this->get('/admin/galleries/1/edit');
+
+         $response->assertStatus(200);
+     }
+
+     public function test_super_admin_user_can_delete_gallery(): void
+     {
+         Artisan::call('laravel-starter:insert-demo-data');
+
+         $model_id = 5;
+
+         $model = Gallery::find($model_id);
+
+         $this->assertModelExists($model);
+
+         $model->delete();
+
+         $this->assertSoftDeleted($model);
+     }
+
+     public function test_super_admin_user_can_view_trashed_gallery(): void
+     {
+         Artisan::call('laravel-starter:insert-demo-data');
+
+         $model_id = 5;
+
+         $model = Gallery::find($model_id);
+
+         $this->assertModelExists($model);
+
+         $model->delete();
+
+         $this->assertDatabaseMissing('galleries', [
+             'id' => $model_id,
+             'deleted_at' => null,
+         ]);
+     }
+
+     public function test_super_admin_user_can_restore_trashed_gallery(): void
+     {
+         Artisan::call('laravel-starter:insert-demo-data');
+
+         $model_id = 5;
+
+         $response = $this->delete('/admin/galleries/'.$model_id);
+
+         $response->assertStatus(302);
+
+         $response->assertRedirect('/admin/galleries');
+
+         $model = Gallery::withTrashed()->find($model_id)->first();
+
+         $model->restore();
+
+         $this->assertModelExists($model);
+     }
+
+     public function test_super_admin_user_can_restore_gallery(): void
+     {
+         Artisan::call('laravel-starter:insert-demo-data');
+
+         $model_id = 5;
+
+         $model = Gallery::find($model_id);
+
+         $this->assertModelExists($model);
+
+         $model->delete();
+
+         $this->assertSoftDeleted($model);
+     }
+
+
 
     /**
      * Tags Test.

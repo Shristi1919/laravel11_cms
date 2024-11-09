@@ -10,13 +10,13 @@ $notifications_latest = optional($notifications)->take(5);
             <a href="/">
                 <img
                     class="sidebar-brand-full"
-                    src="{{ asset("img/logo-with-text.jpg") }}"
+                    src="{{ asset("img/cms.jpg") }}"
                     alt="{{ app_name() }}"
                     height="46"
                 />
                 <img
                     class="sidebar-brand-narrow"
-                    src="{{ asset("img/logo-square.jpg") }}"
+                    src="{{ asset("img/cms.jpg") }}"
                     alt="{{ app_name() }}"
                     height="46"
                 />
@@ -39,7 +39,7 @@ $notifications_latest = optional($notifications)->take(5);
                 @lang("Dashboard")
             </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route("backend.notifications.index") }}">
                 <i class="nav-icon fa-regular fa-bell"></i>
                 &nbsp;
@@ -69,19 +69,31 @@ $notifications_latest = optional($notifications)->take(5);
             $url = route("backend." . $module_name . ".index");
         @endphp
 
-        <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
+        <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" /> --}}
+
+
 
         @php
-            $module_name = "tags";
-            $text = __("Tags");
-            $icon = "fa-solid fa-tags";
+        $module_name = "galleries";
+        $text = __("Galleries");
+        $icon = "fa-solid fa-diagram-project";
+        $permission = "view_" . $module_name;
+        $url = route("backend." . $module_name . ".index");
+    @endphp
+
+    <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
+
+        @php
+            $module_name = "pages";
+            $text = __("Pages");
+            $icon = "fa-regular fa-file-lines";
             $permission = "view_" . $module_name;
             $url = route("backend." . $module_name . ".index");
         @endphp
 
         <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
 
-        @php
+        {{-- @php
             $module_name = "settings";
             $text = __("Settings");
             $icon = "fa-solid fa-gears";
@@ -99,7 +111,7 @@ $notifications_latest = optional($notifications)->take(5);
             $url = route("backend." . $module_name . ".index");
         @endphp
 
-        <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
+        <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" /> --}}
 
         @php
             $module_name = "users";
@@ -121,7 +133,7 @@ $notifications_latest = optional($notifications)->take(5);
 
         <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
 
-        @can("view_logs")
+        {{-- @can("view_logs")
             <li class="nav-group" aria-expanded="true">
                 <a class="nav-link nav-group-toggle" href="#">
                     <i class="nav-icon fa-solid fa-list-ul"></i>
@@ -144,7 +156,7 @@ $notifications_latest = optional($notifications)->take(5);
                 </ul>
             </li>
         @endcan
-    </ul>
+    </ul> --}}
     <div class="sidebar-footer border-top d-none d-md-flex">
         <button class="sidebar-toggler" data-coreui-toggle="unfoldable" type="button"></button>
     </div>

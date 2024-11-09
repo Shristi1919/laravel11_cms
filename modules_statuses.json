@@ -1,5 +1,4 @@
 {
-    "Post": true,
-    "Category": true,
-    "Tag": true
+    "Gallery": true,
+    "Page": true
 }

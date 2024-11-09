@@ -143,6 +143,11 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin'
 /**
  * File Manager Routes.
  */
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'can:view_backend']], function () {
+Route::group([
+    'prefix' => 'laravel-filemanager',
+    'middleware' => ['web', 'auth', 'can:view_backend'],
+    'as' => 'filemanager.'
+], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+

@@ -112,6 +112,27 @@ class BackendBaseController extends Controller
      */
     public function index_data()
     {
+        // dd("helo");
+        // Retrieve necessary module properties
+            $moduleModel = $this->module_model;
+
+            // Define the title and other display properties
+            $pageHeading = label_case($this->module_title);
+            $title = $pageHeading . ' ' . label_case('List');
+
+            // Fetch the data from the model
+            $data = $moduleModel::select('id', 'name', 'updated_at')->get();
+
+            // Return data as a JSON response
+            return response()->json([
+                'status' => 'success',
+                'title' => $title,
+                'data' => $data,
+            ]);
+    }
+
+    public function old_index_data()
+    {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;

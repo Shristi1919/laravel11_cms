@@ -12,7 +12,7 @@
     <div class="card mb-4">
         <div class="card-body">
             <x-backend.section-header>
-                @lang("Admin Dashboard")
+                Welcome To Admin DashBoard!!
 
                 <x-slot name="toolbar">
                     <button
@@ -34,5 +34,4 @@
     </div>
 
     {{-- Demo content --}}
-    @include("backend.includes.dashboard_demo_data")
 @endsection
